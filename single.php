@@ -7,7 +7,18 @@
 
 <div class="container">
   <div class="row">
+    <!-- Add Condition for Active Sidebar -->
+    <?php
+      if(is_active_sidebar("sidebar-1")):
+    ?>
     <div class="col-md-8">
+    <?php
+      else:
+    ?>
+    <div class="col-md-10 offset-md-1">
+      <?php
+        endif;
+      ?>
       <div class="posts">
         <?php
           while ( have_posts() ) {
