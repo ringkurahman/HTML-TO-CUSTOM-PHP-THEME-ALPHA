@@ -75,6 +75,30 @@
                             ?>
                           </p>
                       </div>
+
+                      <!-- Author Section -->
+                      <div class="authorsection">
+                        <div class="row">
+                          <div class="col-md-3 authorimage">
+                            <?php
+                              echo get_avatar(get_the_author_meta("id"));
+                            ?>
+                          </div>
+                          <div class="col-md-9">
+                            <h4>
+                              <?php
+                                echo get_the_author_meta("display_name");
+                              ?>
+                              <p>
+                              <?php
+                                echo get_the_author_meta("description");
+                              ?>
+                              </p>
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+
                       <!-- Post Comments -->
                       <?php if(comments_open()): ?>
                       <div class="col-md-10 offset-md-1">
