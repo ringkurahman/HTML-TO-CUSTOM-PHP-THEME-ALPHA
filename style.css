@@ -1,8 +1,8 @@
 /*
 Theme Name: Alpha
 Theme URI:
-Author: LWHH
-Author URI: https://learnwith.hasinhayder.com
+Author: Ringku Rahman
+Author URI: https://github.com/ringkurahman
 Description: Our First HyperMinimal Theme
 Version: 1.0
 License: GNU General Public License v2 or later
@@ -79,7 +79,8 @@ h2.post-title {
   margin-bottom: 80px;
   padding-bottom: 60px;
 }
-.page-header h1.heading a, .header h1.heading a {
+.page-header h1.heading a,
+.header h1.heading a {
   text-decoration: none;
 }
 
@@ -94,7 +95,11 @@ h2.post-title {
 .header-logo img {
   border-radius: 50px;
 }
-.error-view{
+.error-view {
   margin-top: 200px;
   margin-bottom: 465px;
+}
+.dashicons {
+  color: #ccc;
+  font-size: 50px;
 }

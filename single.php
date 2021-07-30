@@ -64,6 +64,9 @@
                             <?php
                             the_content();
 
+                            // One Page/Post Pagination -->
+                            wp_link_pages();
+
                           // Post Pagination -->
                             next_post_link();
                             echo "<br/>";
