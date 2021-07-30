@@ -196,4 +196,20 @@ if(is_front_page()){
 add_action("wp_head","alpha_about_page_template_background", 100);
 
 
+// Remove Body Classes from the HTML
+function alpha_body_class($classes){
+  unset($classes[array_search("custom-background-1", $classes)]);
+  unset($classes[array_search("custom-background-2", $classes)]);
+  return $classes;
+}
+add_filter("body_class", "alpha_body_class");
+
+// Remove Post Classes from the HTML
+function alpha_post_class($classes){
+  unset($classes[array_search("custom-background-1", $classes)]);
+  unset($classes[array_search("custom-background-2", $classes)]);
+  return $classes;
+}
+add_filter("post_class", "alpha_post_class");
+
 ?>
