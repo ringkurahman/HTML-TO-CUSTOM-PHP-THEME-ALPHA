@@ -16,7 +16,10 @@
       }else if (is_year()) {
         echo get_query_var("year");
       }else if (is_day()){
-        echo get_query_var("day"),"/".get_query_var("monthnum")."/".get_query_var("year");
+        $day = get_query_var("day");
+        $month = get_query_var("monthnum");
+        $year = get_query_var("year");
+        printf("%s-%s-%s",$day,$month,$year);
       }
     ?>
   </h1>
