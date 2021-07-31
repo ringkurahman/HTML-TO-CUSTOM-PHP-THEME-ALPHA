@@ -5,24 +5,32 @@
 <!-- Hero Section -->
 <?php get_template_part("/template-parts/common-part/hero"); ?>
 
+<div class="container">
+  <div class="authorsection authorpage">
+  <div class="row">
+    <div class="col-md-3 authorimage">
+      <?php
+        echo get_avatar(get_the_author_meta("id"));
+      ?>
+    </div>
+    <div class="col-md-9">
+      <h4>
+        <?php
+          echo strtoupper(get_the_author_meta("display_name"));
+        ?>
+        <p>
+        <?php
+          echo get_the_author_meta("description");
+        ?>
+        </p>
+      </h4>
+    </div>
+  </div>
+</div>
+</div>
+
 <div class="posts text-center">
-  <h1>
-    Post In
-    <?php
-      if (is_month()) {
-        $month = get_query_var("monthnum");
-        $dateobj = DateTime::createFromFormat("!m","$month");
-        echo $dateobj->format("F");
-      }else if (is_year()) {
-        echo get_query_var("year");
-      }else if (is_day()){
-        $day = esc_html(get_query_var("day"));
-        $month = esc_html(get_query_var("monthnum"));
-        $year = esc_html(get_query_var("year"));
-        printf("%s-%s-%s",$day,$month,$year);
-      }
-    ?>
-  </h1>
+
   <?php
     while ( have_posts() ) {
       the_post();

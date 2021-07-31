@@ -37,7 +37,7 @@ if(!is_active_sidebar("sidebar-1")) {
                         <p class="<?php echo $alpha_text_class ?>">
                               <strong>
                                 <!-- Author Name -->
-                                <?php the_author(); ?>
+                                <?php the_author_posts_link(); ?>
                               </strong><br/>
                               <!-- Show Date -->
                               <?php echo get_the_date(); ?>
