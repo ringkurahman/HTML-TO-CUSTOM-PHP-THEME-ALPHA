@@ -40,6 +40,11 @@ function alpha_bootstrapping(){
 
   add_theme_support("post-formats", array("image","quote", "video", "audio", "chat", "link"));
 
+  add_image_size("alpha-square",400,400,true); //center center
+  add_image_size("alpha-square-new1",401,401,array("left","top"));
+  add_image_size("alpha-square-new2",500,500,array("center","center"));
+  add_image_size("alpha-square-new3",600,600,array("right","center"));
+
   register_nav_menu("topmenu",__("Top Menu","alpha"));
   register_nav_menu("footermenu",__("Footer Menu","alpha"));
   register_nav_menu("socialmenu",__("Social Menu","alpha"));
@@ -221,5 +226,12 @@ function alpha_highlight_search_results($text){
 add_filter('the_content', 'alpha_highlight_search_results');
 add_filter('the_excerpt', 'alpha_highlight_search_results');
 add_filter('the_title', 'alpha_highlight_search_results');
+
+
+//function alpha_image_srcset(){
+//    return null;
+//}
+//add_filter("wp_calculate_image_srcset","alpha_image_srcset");
+add_filter("wp_calculate_image_srcset","__return_null");
 
 
