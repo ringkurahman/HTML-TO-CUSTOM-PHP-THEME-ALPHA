@@ -4,7 +4,15 @@
             <div class="col-md-12">
                 <!-- Web Site Logo -->
                 <div class="header-logo text-center">
+                    <?php
+                    if ( current_theme_supports( "custom-logo" ) ):
+                ?>
+                <div class="header-logo text-center">
                     <?php the_custom_logo(); ?>
+                </div>
+                <?php
+                    endif;
+                ?>
                 </div>
                 <!-- Web Site Description -->
                 <h3 class="tagline"><?php bloginfo("description"); ?></h3>

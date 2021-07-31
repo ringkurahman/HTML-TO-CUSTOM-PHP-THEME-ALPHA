@@ -27,23 +27,44 @@
                 </div>
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
-                        <p>
+                        <div class="slider">
                             <?php
-                            if ( has_post_thumbnail() ) {
-                                $thumbnail_url = get_the_post_thumbnail_url( null, "large" );
-                                printf( '<a class="popup" href="%s" data-featherlight="image">', $thumbnail_url );
-                                the_post_thumbnail( "large", array( "class" => "img-fluid" ) );
-                                echo '</a>';
-                            }
+                                if ( class_exists( 'Attachments' ) ) {
+                                    $attachments = new Attachments( 'slider' );
+                                    if ( $attachments->exist() ) {
+                                        while ( $attachment = $attachments->get() ) { ?>
+                                            <div>
+                                                <?php echo $attachments->image( 'large' ); ?>
+                                            </div>
+                                            <?php
+                                        }
+                                    }
+                                }
+                            ?>
+                        </div>
+                        <div>
+                        <!-- Show Thumbnail Image -->
+                            <?php
+                                if ( !class_exists( 'Attachments' ) ) {
+                                    if ( has_post_thumbnail() ) {
+                                        $thumbnail_url = get_the_post_thumbnail_url( null, "large" );
+                                        printf( '<a class="popup" href="%s" data-featherlight="image">', $thumbnail_url );
+                                        the_post_thumbnail( "large", array( "class" => "img-fluid" ) );
+                                        echo '</a>';
+                                    }
+                                }
 
-                            the_content();
-
-                            /*next_post_link();
-                            echo "<br/>";
-                            previous_post_link();*/
+                                //-- Post Description -->
+                                the_content();
+                                // One Page/Post Pagination -->
+                                wp_link_pages();
+                                // Post Pagination -->
+                                next_post_link();
+                                echo "<br/>";
+                                previous_post_link();
 
                             ?>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>

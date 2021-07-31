@@ -1,5 +1,11 @@
 <?php
 
+// Conditionally Attachments Plugin File Load
+if ( class_exists( 'Attachments' ) ){
+  require_once "lib/attachments.php";
+}
+
+
 // For Development Prevent Caching
 if ( site_url() == "http://webdevone.local/" ) {
     define( "VERSION", time() );
@@ -18,7 +24,7 @@ function alpha_bootstrapping(){
   );
   add_theme_support("custom-logo", $alpha_custom_logo_details);
 
-    add_theme_support("custom-background");
+  add_theme_support("custom-background");
   add_theme_support("post-thumbnails");
   add_theme_support("title-tag");
 
@@ -46,8 +52,10 @@ function alpha_assets(){
   wp_enqueue_style("bootstrap", "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css");
   wp_enqueue_style( "featherlight-css", "//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.css" );
   wp_enqueue_style( "dashicons");
+  wp_enqueue_style("tns-style", "//cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css");
   wp_enqueue_style("alpha", get_stylesheet_uri(), null, VERSION);
 
+  wp_enqueue_script( "tns-js", "//cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js", null, "0.0.1", true );
   wp_enqueue_script( "featherlight-js", "//cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js", array( "jquery" ), "0.0.1", true );
   wp_enqueue_script( "alpha-main2", get_theme_file_uri( "/assets/js/main.js" ), array(
         "jquery",
@@ -146,54 +154,42 @@ add_filter("nav_menu_css_class","alpha_menu_footer_class", 10, 3);
 
 // Load About page Background Image on Head
 function alpha_about_page_template_background(){
-  if(is_page()){
-    $alpha_feat_image = get_the_post_thumbnail_url(null,"large");
-  }
-?>
-<style>
-    .page-header{
-      background-image: url(<?php echo $alpha_feat_image;?>);
-      background-size: cover;
-    }
-    .page-header h1.heading a {
-      color: #<?php echo get_header_textcolor(); ?>
-
-      <?php
-        if(!display_header_text()){
-          echo "display: none;";
+  if ( is_page() ) {
+            $alpha_feat_image = get_the_post_thumbnail_url( null, "large" );
+            ?>
+            <style>
+                .page-header {
+                    background-image: url(<?php echo $alpha_feat_image;?>);
+                }
+            </style>
+            <?php
         }
-      ?>
-    }
-</style>
-<?php
+  if ( is_front_page() ) {
+            if ( current_theme_supports( "custom-header" ) ) {
+                ?>
+                <style>
+                    .header {
+                        background-image: url(<?php header_image();?>);
+                        background-size: cover;
+                        margin-bottom: 50px;
+                    }
 
-// Load Background Image Globally
-if(is_front_page()){
-  if(current_theme_supports("custom-header")){
-?>
-  <style>
-    .header {
-      background-image: url(<?php echo header_image(); ?>);
-      background-size: cover;
-      background-position: center;
-      margin-bottom: 80px;
-      padding-bottom: 60px;
-    }
-    .header h1.heading a {
-      color: #<?php echo get_header_textcolor(); ?>
+                    .header h1.heading a, h3.tagline {
+                        color: #<?php echo get_header_textcolor();?>;
 
-      <?php
-        if(!display_header_text()){
-          echo "display: none;";
+                    <?php
+                    if(!display_header_text()){
+                        echo "display: none;";
+                    }
+                    ?>
+                    }
+
+                </style>
+                <?php
+            }
         }
-      ?>
-    }
-  </style>
-<?php
-  }
 }
-}
-add_action("wp_head","alpha_about_page_template_background", 100);
+add_action("wp_head","alpha_about_page_template_background", 11);
 
 
 // Remove Body Classes from the HTML
