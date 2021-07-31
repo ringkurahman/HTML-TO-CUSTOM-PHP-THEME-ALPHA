@@ -7,7 +7,15 @@
 
 <div class="posts">
   <?php
-  
+
+    if( !have_posts() ){
+      ?>
+        <h4 class="text-center">
+          <?php  _e('No Result Found', 'alpha') ?>
+        </h4>
+      <?php
+    }
+
     while ( have_posts() ) {
       the_post();
       get_template_part("post-formats/content", get_post_format());
