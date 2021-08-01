@@ -67,6 +67,7 @@ if ( ! is_active_sidebar( "sidebar-1" ) ) {
                                             //-- Post Description -->
                                             the_content();
 
+                                            // Image Custom Field
                                             if(get_post_format() == 'image' && function_exists( 'the_field')):
                                             ?>
 
@@ -142,6 +143,16 @@ if ( ! is_active_sidebar( "sidebar-1" ) ) {
                                                 <p>
                                                     <?php echo get_the_author_meta( "description" ); ?>
                                                 </p>
+
+                                                <!-- Social Profile -->
+                                                <?php if(function_exists( 'the_field' )): ?>
+                                                <small><strong>Facebook URL: </strong>
+                                                  <?php the_field( 'facebook','user_'.get_the_author_meta( "ID" )) ?>
+                                                <br/>
+                                                  <strong>Twitter URL: </strong>
+                                                  <?php the_field( 'twitter','user_'.get_the_author_meta( "ID" )) ?>
+                                                </small>
+                                                <?php endif; ?>
 
                                             </div>
                                         </div>
