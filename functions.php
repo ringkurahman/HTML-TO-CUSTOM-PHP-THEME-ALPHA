@@ -235,3 +235,17 @@ add_filter('the_title', 'alpha_highlight_search_results');
 add_filter("wp_calculate_image_srcset","__return_null");
 
 
+// Modify WordPress Default Query
+function alpha_modify_main_query($wpq){
+  if( is_home() && $wpq->is_main_query() ){
+    // Remove Post By ID
+      $wpq->set("post__not_in", array(33));
+      // Remove Post By Tag ID
+      $wpq->set("tag__not_in", array(13));
+      // Remove Post By Category ID
+      $wpq->set("category__not_in", array(13));
+  }
+}
+add_action("pre_get_posts","alpha_modify_main_query");
+
+
