@@ -116,6 +116,28 @@ if ( ! is_active_sidebar( "sidebar-1" ) ) {
                                             endif;
                                             ?>
 
+                    <!-- // Related Posts -->
+                    <?php if(function_exists('the_field')): ?>
+                        <div>
+                            <h1><?php _e("Related Posts","alpha"); ?></h1>
+                            <?php
+                                $related_posts = get_field('related_posts');
+                                $alpha_rp = new WP_Query(array(
+                                    'post__in' => $related_posts,
+                                    'orderby' => 'post__in',
+                                ));
+
+                            while ( $alpha_rp-> have_posts() ){
+                                $alpha_rp-> the_post();
+                                ?>
+                                    <h4><?php the_title();?></h4>
+                                <?php
+                            }
+                                wp_reset_query();
+                            ?>
+                        </div>
+                    <?php endif; ?>
+
                                             <?php
                                             // One Page/Post Pagination -->
                                             wp_link_pages();
