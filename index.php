@@ -20,11 +20,12 @@
      <div class="col-md-8">
        <!-- Post Pagination -->
        <?php
-        the_posts_pagination(array(
-          "screen_reader_text" => ' ',
-          "prev_text" => "New Posts",
-          "next_text" => "Old Posts"
-        ));
+//         the_posts_pagination(array(
+//           "screen_reader_text" => ' ',
+//           "prev_text" => "New Posts",
+//           "next_text" => "Old Posts"
+//         ));
+          alpha_pagination();
        ?>
      </div>
    </div>
