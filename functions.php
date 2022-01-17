@@ -125,6 +125,29 @@ function alpha_sidebar(){
 add_action("widgets_init","alpha_sidebar");
 
 
+
+// Post Pagination
+function alpha_pagination(){
+
+  $allowed_tags = [
+    'span' => [
+      'class' => []
+    ],
+    'a' => [
+      'class' => [],
+      'href' =>[],
+    ]
+  ];
+
+  $args = [
+    'before_page_number' => '<span class="btn border border-secondary mr-2 mb-2">',
+    'after_page_number' => '</span>',
+  ];
+
+  printf( '<nav class="alpha_pagination clearfix">%s</nav>', wp_kses( paginate_links( $args ), $allowed_tags ) );
+}
+
+
 // Password Protected Post Register
 function alpha_the_excerpt($excerpt){
   if(!post_password_required()){
